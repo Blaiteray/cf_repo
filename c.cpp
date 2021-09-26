@@ -20,6 +20,7 @@ typedef priority_queue<ll,vector<ll>,greater<ll>> pqgl;
 typedef multiset<int> msi;
 //std::set//insert(),begin(),end(),size(),find(key),clear(),erase(),empty()
 typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of_tuple)
+typedef deque<int> di;//vector, with  push_front(), pop_front()
 #define pb(k) push_back(k)
 #define mp(a,b) make_pair(a,b)
 
@@ -40,40 +41,8 @@ typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of
 int main() {
 	FASTio
 	int t; cin >> t; while(t--) {
-		char c[200100];cin>>c;
-		int l=0,n=0;
-		for(int i=0;c[i];i++)n++;
-		ll ans=0;
-		while(l<n) {
-			int s=0,qst,qn;
-			bool q=false;
-			bool rst=false;
-			int i=l+1;s++; if(c[l]=='?') {q=true;qst=l;qn=1;}
-			for(;i<n;i++) {
-				if(!q &&  c[i]=='0' && c[i-1]=='1') s++;
-				else if(!q && c[i]=='1' && c[i-1]=='0') s++;
-				else if(!q && c[i]!='?' && c[i]==c[i-1]) break;
-				else if(!q && c[i]=='?') {qst=i;qn=1;q=true;s++;}
-				else if(q && c[i]=='?') {qn++;s++;}
-				else if(q && c[i]!='?') {
-					q=false;
-					if(qst==l) s++;
-					else {
-						if((qn%2==1 && c[qst-1]==c[i])||(qn%2==0 && c[qst-1]!=c[i])) s++;
-						else {rst=true;break;}
-					}
-				}
-			}
-			if(!rst) {
-				l=i;
-				ans+=ll(s)*ll(s+1)/2;
-			}
-			else {
-				l=qst;
-				ans+=ll(s)*ll(s+1)/2-ll(qn)*ll(qn+1)/2;
-			}
-		}
-		cout<<ans;nl;
+		test
+		loop(x,0,t-1)Test(t) nl
 	}
 	return 0;
 }

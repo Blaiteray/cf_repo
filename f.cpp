@@ -17,10 +17,12 @@ typedef priority_queue<pii> pqii;
 typedef priority_queue<pii, vector<pii>, greater<pii>> pqgii;
 typedef priority_queue<int,vector<int>,greater<int>> pqgi;
 typedef priority_queue<ll,vector<ll>,greater<ll>> pqgl;
+typedef multiset<int> msi;
 //std::set//insert(),begin(),end(),size(),find(key),clear(),erase(),empty()
 typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of_tuple)
-#define pb(k) push_back(k);
-#define mp(a,b) make_pair(a,b);
+typedef deque<int> di;//vector, with  push_front(), pop_front()
+#define pb(k) push_back(k)
+#define mp(a,b) make_pair(a,b)
 
 #define nl cout<<"\n";
 #define Test(x) {static int testInt=1000;if((testInt--)>0)cout<<"(LINE "<<__LINE__<<": VALUE "<<x<<")\t";}
@@ -32,9 +34,10 @@ typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of
 #define rloop(i,k,t) for(int i=k;i>=t;i--)
 #define stloop(i,cont) for(auto i=cont.begin();i!=cont.end();i++)
 
-#define bigint 1000000007
+#define nax 1000000007
 
 /********************************************************/
+
 int main() {
 	FASTio
 	int t; cin >> t; while(t--) {

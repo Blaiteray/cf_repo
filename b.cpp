@@ -20,6 +20,7 @@ typedef priority_queue<ll,vector<ll>,greater<ll>> pqgl;
 typedef multiset<int> msi;
 //std::set//insert(),begin(),end(),size(),find(key),clear(),erase(),empty()
 typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of_tuple)
+typedef deque<int> di;//vector, with  push_front(), pop_front()
 #define pb(k) push_back(k)
 #define mp(a,b) make_pair(a,b)
 
@@ -40,13 +41,8 @@ typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of
 int main() {
 	FASTio
 	int t; cin >> t; while(t--) {
-		int n;cin>>n;int a[n];loop(i,0,n-1)cin>>a[i]; int crnt=0;
-		int x[n];loop(i,0,n-1) if(a[i]%2==0) {x[crnt]=a[i];crnt++;} int evn=crnt;
-		loop(i,0,n-1) if(a[i]%2==1) {x[crnt]=a[i];crnt++;}
-		ll ans=ll(evn)*ll(evn-1)/2+ll(evn)*ll(n-evn); ll k=0;
-		loop(i,evn,n-2) loop(j,i+1,n-1) if(__gcd(x[i],x[j])>1) k++;
-		ans+=k;
-		cout<<ans;nl;
+		test
+		loop(x,0,t-1)Test(t) nl
 	}
 	return 0;
 }

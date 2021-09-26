@@ -20,6 +20,7 @@ typedef priority_queue<ll,vector<ll>,greater<ll>> pqgl;
 typedef multiset<int> msi;
 //std::set//insert(),begin(),end(),size(),find(key),clear(),erase(),empty()
 typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of_tuple)
+typedef deque<int> di;//vector, with  push_front(), pop_front()
 #define pb(k) push_back(k)
 #define mp(a,b) make_pair(a,b)
 
