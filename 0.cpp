@@ -1,150 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
-int i_max=1000000000;
+#define FASTio ios::sync_with_stdio(false);cin.tie(NULL);
+#define DECI fixed<<setprecision(5)
 
-#define edge(a,b) edge[(a-1)*N+(b-1)]
-#define cr(a,b) cr[(a-1)*N+(b-1)]
+// #include <ext/pb_ds/assoc_container.hpp> 
+// #include <ext/pb_ds/tree_policy.hpp>
+// using namespace __gnu_pbds;
+// typedef tree<int,null_type,less<int>,rb_tree_tag,tree_order_statistics_node_update> indexed_set;
 
-bool bfs(int edge[], int  N, int s, int t, int parent[]) { //for finding path, returns true if if path exists
-	bool visited[N+1];
-	for(int i=1;i<=N;i++) visited[i]=false;
-	queue<int> q;
-	q.push(s);
-	visited[s] = true;
-    parent[s] = -1;
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
- 
-        for (int v = 1; v <= N; v++) {
-            if (visited[v] == false && edge(u,v) > 0) {
-                if (v == t) {
-                    parent[v] = u;
-                    return true;
-                }
-                q.push(v);
-                parent[v] = u;
-                visited[v] = true;
-            }
-        }
-    }
-    return false;
-}
+typedef long long ll;
+typedef unsigned long long ull;
+typedef long double ld;
+typedef vector<int> vi;//push_back(),pop_back(),back(),size(),begin(),end(),insert(ite pos, val)
+typedef vector<ll> vll;//clear(),erase(ite position),empty()
+typedef map<int,int> mii;//begin(),end(),size(),insert(pair),insert({key,element}),find(key value)
+//erase(ite position),erase(key value),clear(),empty()
+typedef pair<int,int> pii;
+typedef priority_queue<int> pqi;//pop(),push(),size(),top()[for stl::queue it's front()],empty()
+typedef priority_queue<ll> pqll;//also for std::stack, std::queue [has extra: back()]
+typedef priority_queue<pii> pqii;
+typedef priority_queue<pii, vector<pii>, greater<pii>> pqgii;
+typedef priority_queue<int,vector<int>,greater<int>> pqgi;
+typedef priority_queue<ll,vector<ll>,greater<ll>> pqgl;
+typedef multiset<int> msi;
+//std::set//insert(),begin(),end(),size(),find(key),clear(),erase(),empty()
+typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of_tuple)
+typedef deque<int> di;//vector, with  push_front(), pop_front()
+#define pb(k) push_back(k)
+#define mp(a,b) make_pair(a,b)
 
-void getS(int edge[], int  N, int s, int t, bool setS[]) { //for finding the cut set S
-	bool visited[N+1];
-	for(int i=1;i<=N;i++) visited[i]=false;
-	queue<int> q;
-	q.push(s);
-	setS[s]=true;
-	visited[s] = true;
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
- 
-        for (int v = 1; v <= N; v++) {
-            if (visited[v] == false && edge(u,v) > 0) {
-                setS[v]=true;
-                q.push(v);
-                visited[v] = true;
-            }
-        }
-    }
-}
+#define nl cout<<"\n";
+#define Test(x) {static int testInt=1000;if((testInt--)>0)cout<<"(LINE "<<__LINE__<<": VALUE "<<x<<")\t";}
+#define test {static int testIntx=1000;if((testIntx--)>0)cout<<"(LINE "<<__LINE__<<": CALL "<<1000-testIntx<<")\t";}
+#define testarr(arr) {int* lLe=(int*)(&arr+1);for(int* xTe=arr;xTe!=lLe;xTe++) cout<<*xTe<<" ";nl}
+#define testarrll(arr) {ll* lLe=(ll*)(&arr+1);for(ll* xTe=arr;xTe!=lLe;xTe++) cout<<*xTe<<" ";nl}
 
-int fordFulkerson(int edge[],int N, int s, int t,int n) {
-    int u, v;
-    int cr[N*N]; //  residual capacity of edge (i,j) is r[i,j]
-    for (u = 1; u <= N; u++)
-        for (v = 1; v <= N; v++) cr(u,v)=edge(u,v);
- 
-    int parent[N+1]; 
- 
-    int max_flow = 0; // stores max flow, initially no flow
+#define loop(i,k,n) for(int i=k;i<=n;i++)
+#define rloop(i,k,t) for(int i=k;i>=t;i--)
+#define stloop(i,cont) for(auto i=cont.begin();i!=cont.end();i++)
 
-    while (bfs(cr,N, s, t, parent)) { //finds minimum res. capacity of path
-        int path_flow = i_max;
-        for (v = t; v != s; v = parent[v]) {
-            u = parent[v];
-            path_flow = min(path_flow, cr(u,v));
-        }
+#define nax 1000000007
 
-        for (v = t; v != s; v = parent[v]) { //update res. cap. of edges
-            u = parent[v];
-            cr(u,v) -= path_flow;
-            cr(v,u) += path_flow;
-        }
-        max_flow += path_flow; //augmenting flow
-    }
-    bool setS[N+1];
-    for(int i=1;i<=N;i++) setS[i]=false;
-    getS(cr,N,s,t,setS);
-	cout<< "Vertices in set S: ";
-	for(int i=1;i<=n;i++) if(setS[i]) cout<< i<<" ";
-	cout<< "\nVertices in set T: ";
-	for(int i=1;i<=n;i++) if(!setS[i]) cout<< i<<" ";
-	cout<<"\n";
-	//problem 4 done
-    return max_flow;
-}
+/********************************************************/
 
 int main() {
-	int n; //number of vertex
-	cout<< "Enter the number of vertices: ";
-	cin>>n;
-	int N=n; //current number of vertex
-	int m=2*n+n*(n-1)/2+1;// (maximum number of possible vertex)+1 in the end
-	int e[m][m]; //edge set;
-	for(int i=0;i<m;i++) for(int j=0;j<m;j++) e[i][j]=0;
-	int S,T;//number of source and sink resp.
-	cout<< "Enter the number of source: ";
-	cin>> S;
-	cout << "Enter the number of sink: ";
-	cin >> T;
-	int so[S], si[T]; //sourse and sink vertex;
-	cout<< "enter all the source one after another: ";
-	for(int i=0;i<S;i++) cin>> so[i];
-		cout<< "enter all the sink one after another: ";
-	for(int i=0;i<T;i++) cin>> si[i];
-	int s,t;// the supersource and supersink vertex
-	if(S>1) {
-		s=N+1;
-		N++;
-		for(int i=0;i<S;i++) e[s][so[i]]=i_max;
+	FASTio
+	int t; cin >> t; while(t--) {
+		test
+		loop(x,0,t-1)Test(t) nl
 	}
-	else s=so[0];
-	if(T>1) {
-		t=N+1;
-		N++;
-		for(int i=0;i<T;i++) e[si[i]][t]=i_max;
-	}
-	else t=si[0];
-	//problem 1 done
-
-	int E;//number of edges
-	cout<< "Enter the number of edges: ";
-	cin>> E;
-	for(int i=0;i<E;i++) {
-		int a,b,c;
-		cout << "Enter information of edge in format \"a b c\", where (a,b)=c: ";
-		cin>>a>>b>>c; //(a,b) vertex, weight c
-		if(e[b][a]>0) { //checking for anti parallel case
-			N++;
-			e[a][N]=c;
-			e[N][b]=c;
-		}
-		else e[a][b]=c;
-	}
-
-	//problem 2 done. we got s=source, t=sink, N=number of vertex, e[vertex number][vertex number]=weight
-	int edge[N*N]; // 1d array of edges;
-	for(int i=1;i<=N;i++) for(int j=1;j<=N;j++) {
-		edge(i,j)=e[i][j];
-	}
-	int f=fordFulkerson(edge,N,s,t,n);
-	cout<< "Max flow is: "<<f<<"\n";
-	//Problem 3 done
-	cout<< "Minimum cut: "<< f<<"\n"; //max-flow=min-cut 
-	
 	return 0;
 }

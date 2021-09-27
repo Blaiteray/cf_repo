@@ -3,6 +3,11 @@ using namespace std;
 #define FASTio ios::sync_with_stdio(false);cin.tie(NULL);
 #define DECI fixed<<setprecision(5)
 
+// #include <ext/pb_ds/assoc_container.hpp> 
+// #include <ext/pb_ds/tree_policy.hpp>
+// using namespace __gnu_pbds;
+// typedef tree<int,null_type,less<int>,rb_tree_tag,tree_order_statistics_node_update> indexed_set;
+
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
