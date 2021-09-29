@@ -39,15 +39,42 @@ typedef deque<int> di;//vector, with  push_front(), pop_front()
 #define rloop(i,k,t) for(int i=k;i>=t;i--)
 #define stloop(i,cont) for(auto i=cont.begin();i!=cont.end();i++)
 
-#define nax 1000000007
+#define nax INT_MAX
 
 /********************************************************/
 
 int main() {
 	FASTio
-	int t; cin >> t; while(t--) {
-		test
-		loop(x,0,t-1)Test(t) nl
+	int n;cin>>n; vector<tuple<int,int,int>> d,k;multiset<int> r;multiset<int,greater<int>> l;
+	for(int i=0;i<n;i++) {
+		int a,b;cin>>a>>b;d.push_back(make_tuple(a,b,i));k.push_back(make_tuple(a,-b,i)); r.insert(b); l.insert(b);
 	}
+	sort(d.begin(),d.end());
+	sort(k.begin(),k.end());
+	int ansf[n],anss[n];
+	for(int i=0;i<n;i++) {
+		auto it=r.begin();
+		if(get<1>(d[i])!=*(it)) {
+			ansf[get<2>(d[i])]=1;
+		}
+		else if(get<1>(d[i])==*(++it)) {
+			ansf[get<2>(d[i])]=1;
+		}
+		else ansf[get<2>(d[i])]=0;
+		r.erase(r.find(get<1>(d[i])));
+	}
+	for(int i=n-1;i>=0;i--) {
+		auto it=l.begin();
+		if((-get<1>(k[i]))!=*(it)) {
+			anss[get<2>(k[i])]=1;
+		}
+		else if((-get<1>(k[i]))==*(++it)) {
+			anss[get<2>(k[i])]=1;
+		}
+		else anss[get<2>(k[i])]=0;
+		l.erase(l.find(-get<1>(k[i])));
+	}
+	for(int i=0;i<n;i++) cout<<ansf[i]<<" ";nl
+	for(int i=0;i<n;i++) cout<<anss[i]<<" ";nl
 	return 0;
 }

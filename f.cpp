@@ -3,6 +3,12 @@ using namespace std;
 #define FASTio ios::sync_with_stdio(false);cin.tie(NULL);
 #define DECI fixed<<setprecision(5)
 
+// #include <ext/pb_ds/assoc_container.hpp> 
+// #include <ext/pb_ds/tree_policy.hpp>
+// using namespace __gnu_pbds;
+// typedef tree<int,null_type,less<int>,rb_tree_tag,tree_order_statistics_node_update> indexed_set;
+// typedef tree<int,null_type,less_equal<int>,rb_tree_tag,tree_order_statistics_node_update> indexed_multiset;
+
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
@@ -24,15 +30,10 @@ typedef deque<int> di;//vector, with  push_front(), pop_front()
 #define pb(k) push_back(k)
 #define mp(a,b) make_pair(a,b)
 
-#define nl cout<<"\n";
+#define nl cout<<"\n"
 #define Test(x) {static int testInt=1000;if((testInt--)>0)cout<<"(LINE "<<__LINE__<<": VALUE "<<x<<")\t";}
 #define test {static int testIntx=1000;if((testIntx--)>0)cout<<"(LINE "<<__LINE__<<": CALL "<<1000-testIntx<<")\t";}
 #define testarr(arr) {int* lLe=(int*)(&arr+1);for(int* xTe=arr;xTe!=lLe;xTe++) cout<<*xTe<<" ";nl}
-#define testarrll(arr) {ll* lLe=(ll*)(&arr+1);for(ll* xTe=arr;xTe!=lLe;xTe++) cout<<*xTe<<" ";nl}
-
-#define loop(i,k,n) for(int i=k;i<=n;i++)
-#define rloop(i,k,t) for(int i=k;i>=t;i--)
-#define stloop(i,cont) for(auto i=cont.begin();i!=cont.end();i++)
 
 #define nax 1000000007
 
@@ -42,7 +43,6 @@ int main() {
 	FASTio
 	int t; cin >> t; while(t--) {
 		test
-		loop(x,0,t-1)Test(t) nl
 	}
 	return 0;
 }
