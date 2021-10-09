@@ -16,7 +16,7 @@ int main() {
 	s.insert(2);
 	s.insert(7);
 	s.insert(3);
-				//arranged in (2,3,7,9) order
+				//arranged in (2,2,3,7,9) order
 	auto x = s.find_by_order(1);
 	cout << *x << "\n"; // 3; The function find_by_order returns an iterator to the element at a given position
 

@@ -3,10 +3,11 @@ using namespace std;
 #define FASTio ios::sync_with_stdio(false);cin.tie(NULL);
 #define DECI fixed<<setprecision(5)
 
-// #include <ext/pb_ds/assoc_container.hpp> 
-// #include <ext/pb_ds/tree_policy.hpp>
-// using namespace __gnu_pbds;
-// typedef tree<int,null_type,less<int>,rb_tree_tag,tree_order_statistics_node_update> indexed_set;
+#include <ext/pb_ds/assoc_container.hpp> 
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+typedef tree<int,null_type,less<int>,rb_tree_tag,tree_order_statistics_node_update> indexed_set;
+typedef tree<int,null_type,less_equal<int>,rb_tree_tag,tree_order_statistics_node_update> indexed_multiset;
 
 typedef long long ll;
 typedef unsigned long long ull;
@@ -45,34 +46,34 @@ typedef deque<int> di;//vector, with  push_front(), pop_front()
 
 int main() {
 	FASTio
-	int n;cin>>n; vector<tuple<int,int,int>> d,k;multiset<int> r;multiset<int,greater<int>> l;
+	int n;cin>>n; vector<tuple<int,int,int>> d,k;indexed_multiset l,r;
 	for(int i=0;i<n;i++) {
-		int a,b;cin>>a>>b;d.push_back(make_tuple(a,b,i));k.push_back(make_tuple(a,-b,i)); r.insert(b); l.insert(b);
+		int a,b;cin>>a>>b;d.push_back(make_tuple(a,-b,i));k.push_back(make_tuple(b,-a,i)); r.insert(b); l.insert(a);
 	}
 	sort(d.begin(),d.end());
 	sort(k.begin(),k.end());
 	int ansf[n],anss[n];
 	for(int i=0;i<n;i++) {
 		auto it=r.begin();
-		if(get<1>(d[i])!=*(it)) {
-			ansf[get<2>(d[i])]=1;
+		if(-get<1>(d[i])!=*(it)) {
+			ansf[get<2>(d[i])]=r.order_of_key(1-get<1>(d[i]))-1;
 		}
-		else if(get<1>(d[i])==*(++it)) {
-			ansf[get<2>(d[i])]=1;
+		else if(l.size()!=1 && -get<1>(d[i])==*(++it)) {
+			ansf[get<2>(d[i])]=r.order_of_key(1-get<1>(d[i]))-1;
 		}
 		else ansf[get<2>(d[i])]=0;
-		r.erase(r.find(get<1>(d[i])));
+		r.erase(r.find_by_order(r.order_of_key(-get<1>(d[i]))));
 	}
-	for(int i=n-1;i>=0;i--) {
+	for(int i=0;i<n;i++) {
 		auto it=l.begin();
-		if((-get<1>(k[i]))!=*(it)) {
-			anss[get<2>(k[i])]=1;
+		if(-get<1>(k[i])!=*(it)) {
+			anss[get<2>(k[i])]=l.order_of_key(1-get<1>(k[i]))-1;
 		}
-		else if((-get<1>(k[i]))==*(++it)) {
-			anss[get<2>(k[i])]=1;
+		else if(l.size()!=1 && -get<1>(k[i])==*(++it)) {
+			anss[get<2>(k[i])]=l.order_of_key(1-get<1>(k[i]))-1;
 		}
-		else anss[get<2>(k[i])]=0;
-		l.erase(l.find(-get<1>(k[i])));
+		else anss[get<2>(k[i])]=0;		
+		l.erase(l.find_by_order(l.order_of_key(-get<1>(k[i]))));
 	}
 	for(int i=0;i<n;i++) cout<<ansf[i]<<" ";nl
 	for(int i=0;i<n;i++) cout<<anss[i]<<" ";nl

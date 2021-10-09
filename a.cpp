@@ -41,8 +41,11 @@ typedef deque<int> di;//vector, with  push_front(), pop_front()
 
 int main() {
 	FASTio
-	int t; cin >> t; while(t--) {
-		LB
-	}
-	return 0;
+	char a[100], b[100];cin>>a>>b;
+	int i=0;
+	for(;a[i];i++) if(a[i]!=b[i]) break;
+	if(a[i]==b[i]) cout<<"No";
+	else if(a[i]>b[i]) cout<<"No";
+	else cout<<"Yes";nl;
+	exit(0);
 }
