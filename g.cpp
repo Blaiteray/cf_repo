@@ -27,8 +27,8 @@ typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of
 typedef deque<int> di;//vector, with  push_front(), pop_front()
 #define pb(k) push_back(k)
 #define mp(a,b) make_pair(a,b)
-#define B begin();
-#define E end();
+#define B begin()
+#define E end()
 #define nl cout<<"\n"
 
 #define DB(x) {static int testInt=1000;if((testInt--)>0)cout<<"(LINE "<<__LINE__<<": VALUE "<<x<<")\t";}

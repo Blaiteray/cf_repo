@@ -27,59 +27,22 @@ typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of
 typedef deque<int> di;//vector, with  push_front(), pop_front()
 #define pb(k) push_back(k)
 #define mp(a,b) make_pair(a,b)
-#define B begin();
-#define E end();
+#define B begin()
+#define E end()
 #define nl cout<<"\n"
 
 #define DB(x) {static int testInt=1000;if((testInt--)>0)cout<<"(LINE "<<__LINE__<<": VALUE "<<x<<")\t";}
-#define LB {static int testIntx=0;if(testIntx<1000)cout<<"(LINE "<<__LINE__<<","<<testIntx+1<<")\t";else return;testIntx++;}
+#define LB {static int testIntx=0;if(testIntx<1000)cout<<"(LINE "<<__LINE__<<","<<testIntx+1<<")\t";else break;testIntx++;}
 #define TA(arr) {int* lLe=(int*)(&arr+1);for(int* xTe=arr;xTe!=lLe;xTe++) cout<<*xTe<<" ";nl;}
 
 #define nax 1000000007
 
 /********************************************************/
-int cou(int d[], int s) {
-	int k=0;
-	for(int i=s-1;i>=0;i--) k=10*k+d[i];
-	return k;
-}
-bool chk(vi x,int k) {
-	for(int i=0;i<x.size();i++) if(x[i]==k) return true;
-	return false;
-}
-void perm(int d[],int m, ll &ans,int k, vi x) {
-	if(k==m) {
-		int n=x.size();
-		int u[n],v[m-n];
-		for(int i=0,j=0,k=0;i<m;i++) {
-			if(chk(x,i)) {u[j]=d[i];j++;}
-			else {v[k]=d[i];k++;}
-		}
-		sort(u,u+n);
-		sort(v,v+m-n);
-		ans=max(ans,ll(cou(u,n))*ll(cou(v,m-n)));
-		return;
-	}
-	x.push_back(k);
-	perm(d,m,ans,k+1,x);
-	x.pop_back();
-	perm(d,m,ans,k+1,x);
-}
 
 int main() {
 	FASTio
-	int n;cin>>n;
-	int z=0;int m=0;
-	for(int i=n;i>0;i/=10) {
-		if(i%10==0) z++;
-		else m++;
+	int t; cin >> t; while(t--) {
+		LB
 	}
-	int d[m];
-	for(int i=n,j=0;i>0;i/=10) if(i%10!=0) {d[j]=i%10;j++;}
-	vi x;ll ans=0;
-	perm(d,m,ans,0,x);
-	ll ou=ans;
-	while((--z)>=0) ou*=10;
-	cout<< ou;nl;
 	return 0;
 }

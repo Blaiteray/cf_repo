@@ -27,8 +27,8 @@ typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of
 typedef deque<int> di;//vector, with  push_front(), pop_front()
 #define pb(k) push_back(k)
 #define mp(a,b) make_pair(a,b)
-#define B begin();
-#define E end();
+#define B begin()
+#define E end()
 #define nl cout<<"\n"
 
 #define DB(x) {static int testInt=1000;if((testInt--)>0)cout<<"(LINE "<<__LINE__<<": VALUE "<<x<<")\t";}
@@ -41,15 +41,8 @@ typedef deque<int> di;//vector, with  push_front(), pop_front()
 
 int main() {
 	FASTio
-	char a[200],b[200];cin>>a>>b;
-	int c=0;
-	char u='*',v='*';bool ans=true;
-	for(int i=0;a[i];i++) if(a[i]!=b[i]) {
-		c++;
-		if(c==1 && (a[i]!=b[i+1] || b[i]!=a[i+1])) ans=false; 
+	int t; cin >> t; while(t--) {
+		LB
 	}
-	if(c>2) cout<<"No\n";
-	else if(ans) cout<<"Yes\n";
-	else cout<<"No\n";
 	return 0;
 }
