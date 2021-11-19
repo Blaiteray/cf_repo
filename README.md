@@ -30,7 +30,7 @@ codeforce contest setup
 * z.cpp
 * zendef.cpp
 
-### pbds reference
+### pbds reference and full form of template
 * policy.cpp
 
 ### Input genereator cpp code:

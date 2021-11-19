@@ -9,40 +9,31 @@ using namespace std;
 // typedef tree<int,null_type,less<int>,rb_tree_tag,tree_order_statistics_node_update> indexed_set;
 // typedef tree<int,null_type,less_equal<int>,rb_tree_tag,tree_order_statistics_node_update> indexed_multiset;
 
-typedef long long ll;
-typedef unsigned long long ull;
-typedef long double ld;
-typedef vector<int> vi;//push_back(),pop_back(),back(),size(),begin(),end(),insert(ite pos, val)
-typedef vector<vector<int>> vvi;//clear(),erase(ite position),empty()
-typedef map<int,int> mii;//begin(),end(),size(),insert(pair),insert({key,element}),find(key value)
-//erase(ite position),erase(key value),clear(),empty()
-typedef pair<int,int> pii;
-typedef priority_queue<int> pqi;//pop(),push(),size(),top()[for stl::queue it's front()],empty()
-typedef priority_queue<pii> pqii;//also for std::stack, std::queue [has extra: back()]
-typedef priority_queue<int,vector<int>,greater<int>> pqgi;
-typedef set<int> si;
-typedef multiset<int> msi;
-//std::set//insert(),begin(),end(),size(),find(key),clear(),erase(),empty()
-typedef tuple<int,int,int> tiii; //make_tuple(int,int,int),get<position>(name_of_tuple)
-typedef deque<int> di;//vector, with  push_front(), pop_front()
+typedef long long ll;typedef unsigned long long ull;typedef long double ld;
+typedef vector<int> vi;typedef vector<vector<int>> vvi;typedef deque<int> di;
+typedef map<int,int> mii;
+typedef pair<int,int> pii;typedef tuple<int,int,int> tiii;
+typedef priority_queue<int> pqi;typedef priority_queue<int,vector<int>,greater<int>> pqgi;
+typedef set<int> si;typedef multiset<int> msi;
 #define pb(k) push_back(k)
 #define mp(a,b) make_pair(a,b)
 #define B begin()
 #define E end()
+#define F first
+#define S second
 #define nl cout<<"\n"
-
-#define DB(x) {static int testInt=1000;if((testInt--)>0)cout<<"(LINE "<<__LINE__<<": VALUE "<<x<<")\t";}
-#define LB {static int testIntx=0;if(testIntx<1000)cout<<"(LINE "<<__LINE__<<","<<testIntx+1<<")\t";else break;testIntx++;}
-#define TA(arr) {int* lLe=(int*)(&arr+1);for(int* xTe=arr;xTe!=lLe;xTe++) cout<<*xTe<<" ";nl;}
-
+/***************Debugging tools are below*****************/
+#define LC cout<<"line("<<__LINE__<<") ";
+#define DB(x) {static int _ti_=1000;if((_ti_--)>0)cout<<#x<<": "<<x<<"\n";}
+#define LB {static int _tx_=0;if(_tx_>=1000) {cout<<"inf loop\n" ;break;}_tx_++;}
+#define TA(a) {int* n=(int*)(&a+1);cout<<#a<<": ";for(int* i=a;i!=n;i++) cout<<*i<<" ";nl;}
 #define nax 1000000007
-
 /********************************************************/
-
 int main() {
 	FASTio
 	int t; cin >> t; while(t--) {
 		LB
+		LC DB(t)
 	}
 	return 0;
 }
