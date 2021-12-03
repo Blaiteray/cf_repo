@@ -18,7 +18,7 @@ codeforce contest setup
 
 ### Different solution for testing code:
 * 0.cpp
-* tester.cpp
+* tstr.cpp
 
 ### CMD batch file:
 * test.cmd
